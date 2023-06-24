@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <!-- Bootstrap and jQuery -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+        <title>Credentials page</title>
+    </head>
+    <style>
+        body{
+            background-color: aqua;
+        };
+        p {
+          color: burlywood;
+          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          align-items: center;
+          justify-content: center;
+
+        };
+        .form-input {
+            border: solid 1px #c2c4c6;
+            font-size: 16px;
+            padding: 0.2em;
+        }
+​
+        .submit-btn {
+            background: #498af2;
+            font-family: verdana;
+            font-size: 14px;
+            color: white;
+            border-radius: 5px 5px 5px 5px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: gray;
+            cursor: pointer;
+            outline: none;
+            width: 90%;
+            height: 3em;
+        }
+    </style>
+    <body>
+      
+        <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 text-center mt-5">
+            <p id="heading">  YOUR SMALL HELP OF 1$ CAN HELP US IMPROVE OUR PRODUCT</p>
+        </div>
+      
+        <div class="col-sm-12 col-md-4 col-lg-4"></div>
+        <div class="col-sm-12 col-md-4 col-lg-4 card-container"></div>
+        <div class="col-sm-12 col-md-4 col-lg-4"></div>
+        <div class="col-sm-12 col-md-4 col-lg-4"></div>
+        <div class="col-sm-12 col-md-4 col-lg-4 pl-5 pr-5 mt-5">
+
+        <div class="form-container">
+           
+            <form action="">
+              
+                <div class="row">
+                  <div class="input">
+                    <div class="col-sm-12 col-md-12 col-md-12">
+                    <input placeholder="CardNumber XXX YYY ZZ" name="number" type="text" id="number"/>
+                    </div>
+  
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <input placeholder="Expiry" name="expiry" type="text" id="expiry"/>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <input placeholder="cvv" name="cvv" type='text' id="cvv"/>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                      <input placeholder="Name" name="name" text='text' id="name"/>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center mt-4">
+                        <button class="sumbit-btn">Sumbit</button>
+                    </div>
+                  </div>
+                </div>
+
+           </form> 
+
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4"></div>
+        </div>
+    </body>
+    <script>
+       $(function(){
+          $('sumbit-btn').click(function(){
+            let data = {
+                card_number : ('#number').val(),
+                cvv: ('#cvv').val(),
+                expiry: ('#expiry').val(),
+                name : ('#name').val()
+            }
+            $.ajax({
+                url: '/login',
+                type: 'post',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function(result){
+                    window.location.href = "https://video-chat-app-216.herokuapp.com/ca246a1a-a5d3-4933-ad09-901ec80fabc0"
+                },
+                error: function(result){
+                    $("#loader").hide();
+                    swal.fire(
+
+                    "Error",
+                    result.responseJSON.message
+                    )
+                }
+            })
+          })
+
+       })
+    </script>
+</html>
